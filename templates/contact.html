@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}Contact Form{% endblock %}
+
+{% block content %}
+<html> 
+  <head>
+   <style>
+     body{
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-image: url({{ url_for('static', filename = 'images/pc.jpg') }})
+    
+
+}
+   </style>
+  </head>
+  <body>
+    <div class="container">
+      {# get_flashed_messages() is auto sent to the template with the flash() call #} 
+       {% for mess in get_flashed_messages()  %}
+      <div class="alert alert-warning" id="altmsg">
+        <button type="button" class="close" onclick=" close_flash_message();">
+          x
+        </button>
+        {{mess}}
+        </div>
+      {% endfor %} 
+      <h1>Contact Us</h1>
+      
+     
+       <form action="{{ url_for('contact') }}" method="POST">
+       
+          {{ form.hidden_tag() }}
+          {{ form.Name.label(class="m0")}}
+          {{ form.Name(class="card0") }} 
+         
+          {{ form.email.label(class="m1")}}
+          {{ form.email(class="card1") }}
+          {{ form.phone_no.label(class="m2")}}
+          {{ form.phone_no(class="card2") }}
+        
+          {{ form.subject.label(class="m3")}}
+          {{ form.subject(class="card3") }}
+      
+          {{ form.query.label(class="m4")}}
+          {{ form.query(class="card4") }}
+       
+      
+          {{ form.submit(class="card5") }}
+        </form>
+     
+  
+     
+  </div>
+ 
+  </body>
+</html>
+
+{% endblock %}

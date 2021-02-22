@@ -1,0 +1,6 @@
+New Query Posted
+
+Name: {{ name }}
+Email: {{ email }}
+Subject: {{ sub }}
+Query: {{ query }}
