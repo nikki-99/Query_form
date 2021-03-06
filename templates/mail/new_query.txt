@@ -3,4 +3,4 @@ New Query Posted
 Name: {{ name }}
 Email: {{ email }}
 Subject: {{ sub }}
-Query: {{ query }}
+Query: {{ query_msg }}
