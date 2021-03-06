@@ -71,14 +71,7 @@ def contact():
    
     form = ContactForm()
     if form.validate_on_submit():
-        # user = User.query.filter_by(username = form.name.data).first()
-        # if user is None:
-        #     user = User(username = form.namee.data)
-        #     db.session.add(user)
-        #     db.session.commit()
-        #     session['exists'] = Flase
-        # else:
-        #     session['exists'] = True    
+          
         session['Name'] = form.Name.data
     
         form.Name.data = ''
@@ -97,29 +90,15 @@ def contact():
             u = User(username = session['Name'] , email = session['email'], phone_no =session['phone_no'],subject = session['subject'], query_msg = session['query_msg'])
             db.session.add(u)
             db.session.commit()
-        #     session['exists'] = Flase
-        # else:
-        #      session['exists'] = True 
-            # flash(f'Query has been posted. Soon you will getr reply!!')
-            # return redirect(url_for('contact')) 
-
-
+       
         if app.config['ADMIN']:
             send_mail(app.config['ADMIN'], 'New Query Posted', 'mail/new_query',name=session['Name'],email=session['email'],phone_no=session['phone_no'],sub=session['subject'],query_msg=session['query_msg'])
         
         flash('Query has been posted. Soon you will get reply!!')
         return redirect(url_for('contact'))
 
-
-
-
-
-
-
     return render_template('contact.html',form=form, Name = session.get('Name'),email = session.get('email'),phone_no = session.get('phone_no'),subject = session.get('subject'), query_msg = session.get('query_msg'))
 
-
-   
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'),404
